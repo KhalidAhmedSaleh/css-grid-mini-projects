@@ -1,0 +1,403 @@
+/* 
+============
+Variables
+============
+ */
+:root {
+  --primary-color: #f15025;
+  --main-black: #222;
+  --main-white: #fff;
+  --of-white: #f7f7f7;
+  --dark-grey: #afafaf;
+  --main-transition: all 0.3s linear;
+  --main-spacing: 0.2rem;
+}
+
+/* 
+============
+Global Styles
+============
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Fira Code", monospace;
+  color: var(--main-black);
+  background-color: var(--main-white);
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: capitalize;
+  letter-spacing: var(--main-spacing);
+  margin-bottom: 1.25rem;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+p {
+  font-weight: 300;
+  font-size: 0.7rem;
+  line-height: 2;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  border: 3px solid var(--primary-color);
+  color: var(--primary-color);
+  margin: 3rem;
+  transition: var(--main-transition);
+}
+.btn:hover {
+  background-color: var(--primary-color);
+  color: var(--main-white);
+}
+
+/* 
+============
+Navbar
+============
+*/
+
+.main-nav {
+  background-color: var(--dark-grey);
+  padding: 0 2rem;
+}
+
+.main-nav li {
+  list-style: none;
+}
+
+.main-nav a {
+  text-transform: capitalize;
+  letter-spacing: var(--main-spacing);
+  color: var(--primary-color);
+  padding: 1rem 0;
+  display: block;
+  transition: var(--main-transition);
+}
+
+.main-nav a:hover {
+  color: var(--main-black);
+}
+
+@media screen and (min-width: 992px) {
+  .main-nav ul {
+    max-width: 1170px;
+    margin: 0 auto; /* align items at the center */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .main-nav a {
+    text-transform: center;
+  }
+}
+/* 
+============
+Hero
+============
+*/
+.hero-header {
+  min-height: 100vh;
+  background-color: var(--primary-color);
+  color: var(--main-white);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-banner p {
+  width: 80%;
+  max-width: 560px;
+  font-size: 1rem;
+}
+@media screen and (max-width: 600px) {
+  .hero-banner {
+    padding: 0 3rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hero-header {
+    background: linear-gradient(rgba(241, 80, 37, 0.75), rgba(0, 0, 0, 0.75)),
+      url("./images/image-2.jpeg") center/cover fixed no-repeat;
+  }
+}
+
+/* 
+============
+Cards
+============
+*/
+.title {
+  text-align: center;
+}
+.cards {
+  padding: 4rem 0;
+}
+.cards-center {
+  width: 80vw;
+  max-width: 1170px;
+  margin: 2rem auto;
+}
+
+.card {
+  border: 1px solid var(--dark-grey);
+  margin-bottom: 3rem;
+}
+.card-info {
+  padding: 1rem;
+}
+.card-footer {
+  background-color: var(--dark-grey);
+  padding: 0.5rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}
+.card-footer span {
+  color: var(--primary-color);
+}
+
+/*
+----------------
+Three columns layout with media query
+----------------
+*/
+
+/* @media screen and (min-width: 768px) {
+  .cards-center {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .cards-center {
+    grid-template-columns: repeat(3, 1fr);
+  }
+} */
+.card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto; /* in order to solve the height problem when adding more words */
+}
+
+/*
+----------------------
+Three coulmns layout with css grid
+----------------------
+*/
+
+/* The calculation is depend on is "(1170px - 64px) / 3 = 368px" 1170px is the max-width of the parent of my cards, 64 because i want a 2rem gap between the cards and i divided them by 3 cause i want 3 columns layout*/
+.cards-center {
+  display: grid;
+  column-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(368px, 1fr));
+}
+
+/* 
+============
+Tiles
+============
+*/
+.tiles {
+  padding: 4rem 0;
+}
+.tiles-center {
+  width: 90vw;
+  max-width: 1170px;
+  display: grid;
+  margin: 2rem auto;
+  row-gap: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .tiles-center {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .tiles-center {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1170px) {
+  .tiles-center {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 200px);
+    grid-template-areas:
+      "a a a b"
+      "a a a c"
+      "d d d d"
+      "e f f f"
+      "e g h i";
+  }
+  .tiles img {
+    height: 100%; /* To make sure my images won't get bigger than the tile itself */
+    object-fit: cover;
+  }
+  .tile-1 {
+    grid-area: a;
+  }
+  .tile-2 {
+    grid-area: b;
+  }
+  .tile-3 {
+    grid-area: c;
+  }
+  .tile-4 {
+    grid-area: d;
+  }
+  .tile-5 {
+    grid-area: e;
+  }
+  .tile-6 {
+    grid-area: f;
+  }
+  .tile-7 {
+    grid-area: g;
+  }
+  .tile-8 {
+    grid-area: h;
+  }
+  .tile-9 {
+    grid-area: i;
+  }
+}
+
+/* 
+============
+Layout
+============
+*/
+.haeder {
+  background-color: var(--primary-color);
+  color: var(--main-white);
+  text-align: center;
+  padding: 0.5rem 0;
+}
+.navbar {
+  background-color: var(--dark-grey);
+}
+.navbar li {
+  list-style-type: none;
+}
+.navbar a {
+  padding: 1rem;
+  display: inline-block;
+  text-transform: capitalize;
+  letter-spacing: var(--main-spacing);
+  font-size: 1.2rem;
+  color: var(--main-black);
+  transition: var(--main-transition);
+}
+.navbar a:hover {
+  color: var(--main-white);
+}
+
+.content {
+  padding: 2rem;
+}
+.content p {
+  font-size: 1rem;
+}
+.sidebar {
+  background-color: var(--primary-color);
+  padding: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  color: var(--main-white);
+  font-size: 1.2rem;
+}
+.footer {
+  background-color: var(--main-black);
+  color: var(--main-white);
+  text-align: center;
+  text-transform: capitalize;
+  padding: 0.5rem 0;
+}
+.footer p {
+  font-size: 1.2rem;
+}
+.main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto auto;
+}
+@media screen and (min-width: 768px) {
+  .navbar ul {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .main {
+    display: grid;
+    grid-template-columns: [start] 200px [col-1-end] 1fr [col-2-end] 50px [end];
+    grid-template-rows: [start] auto [row-1-end] 1fr [row-2-end] auto [end];
+  }
+  .haeder {
+    grid-column: start/end;
+    grid-row: start/row-1-end;
+  }
+  .navbar {
+    grid-column: start/col-1-end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .content {
+    grid-column: col-1-end/col-2-end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .sidebar {
+    grid-column: col-2-end/end;
+    grid-row: row-1-end/row-2-end;
+  }
+  .footer {
+    grid-column: start/end;
+    grid-row: row-2-end/end;
+  }
+  .navbar ul {
+    grid-template-columns: 1fr;
+    align-items: center;
+    min-height: 100%;
+  }
+  .sidebar {
+    grid-template-columns: 1fr;
+    min-height: 100%;
+    align-items: center;
+    background-color: var(--dark-grey);
+  }
+}
